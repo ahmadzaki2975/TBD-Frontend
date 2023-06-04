@@ -27,7 +27,7 @@ export default function BookPage() {
       >
         &larr; Back
       </div>
-      <div className="w-[200px] aspect-[3/4] bg-gradient-to-br from-violet-500 to-blue-500"></div>
+      <div className="w-[200px] aspect-[3/4] bg-gradient-to-br from-violet-500 to-blue-500 text-white grid place-items-center">Ini gambar</div>
       <div className="w-1/4">
         <h1 className="font-bold text-center text-[20px] mb-3">
           {book.bookname}
