@@ -47,12 +47,15 @@ export default function BookPage() {
         <h2 className="text-center text-[16px]">
           {book.genres?.map((genre) => genre).join(", ")}
         </h2>
+        <hr className="my-1" />
+        <h2 className="text-center text-[16px] font-semibold">Pages</h2>
+        <h2 className="text-center text-[16px]">{book.pages}</h2>
 
         <button
           className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md"
           onClick={() => alert("dari mana duitnya")}
         >
-          Buy for {book.price}$
+          Buy for {book.price}$ each
         </button>
       </div>
     </main>
