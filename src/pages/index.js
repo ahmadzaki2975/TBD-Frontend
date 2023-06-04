@@ -22,7 +22,7 @@ export default function Home() {
       <h1>Bookstore DB</h1>
       <div className="grid grid-cols-4 gap-5">
         {books.map((book) => {
-          return <BookCard key={book.id} book={book} />;
+          return <BookCard key={book.bookid} book={book} />;
         })}
       </div>
     </main>
