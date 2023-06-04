@@ -48,7 +48,10 @@ export default function BookPage() {
           {book.genres?.map((genre) => genre).join(", ")}
         </h2>
 
-        <button className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md">
+        <button
+          className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md"
+          onClick={() => alert("dari mana duitnya")}
+        >
           Buy for {book.price}$
         </button>
       </div>
