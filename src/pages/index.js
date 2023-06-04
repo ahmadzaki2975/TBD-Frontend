@@ -8,7 +8,7 @@ export default function Home() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/books`)
+      .get(`${apiUrl}/books`)
       .then((res) => {
         setBooks(res.data);
       })
