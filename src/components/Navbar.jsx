@@ -5,7 +5,7 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <nav className="flex justify-between absolute top-0 w-full bg-blue-500 py-4 px-5 text-white">
+    <nav className="flex justify-between //absolute top-0 w-full bg-blue-500 py-4 px-5 text-white">
       <Link href="/">
         <div className="font-bold">BookstoreDB</div>
       </Link>
