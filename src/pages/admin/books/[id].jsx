@@ -118,7 +118,17 @@ export default function BookDetailsAdminPage() {
         </button>
         <button
           className="w-full bg-red-400 py-2 mt-5 cursor-pointer hover:bg-red-500 rounded-md"
-          onClick={() => alert("dari mana duitnya")}
+          onClick={() => {
+            axios
+              .delete(`${apiUrl}/books/delete/${id}`)
+              .then((res) => {
+                alert("Book deleted successfully");
+                router.push("/admin/books");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
         >
           Delete
         </button>
