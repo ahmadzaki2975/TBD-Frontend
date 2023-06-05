@@ -87,12 +87,22 @@ export default function BookDetailsAdminPage() {
               value={book.price}
               onChange={(e) => setBook({ ...book, price: e.target.value })}
             />
-          </div>  
+          </div>
         </form>
 
         <button
           className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md"
-          onClick={() => alert("dari mana duitnya")}
+          onClick={() => {
+            axios
+              .post(`${apiUrl}/books/update/${id}`, book)
+              .then((res) => {
+                alert("Book updated successfully");
+                router.push("/admin/books");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
         >
           Update
         </button>
