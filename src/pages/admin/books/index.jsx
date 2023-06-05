@@ -1,12 +1,12 @@
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BsSearch } from "react-icons/bs";
+import { BsFillPlusCircleFill, BsSearch } from "react-icons/bs";
 
 export default function AdminBookPage() {
   const [books, setBooks] = useState([]);
   const [searchKey, setSearchKey] = useState("");
-  const [refresh, setRefresh] = useState(false); 
+  const [refresh, setRefresh] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     axios
@@ -21,7 +21,7 @@ export default function AdminBookPage() {
   }, [refresh]);
 
   return (
-    <main className="min-h-screen py-20">
+    <main className="min-h-screen py-20 relative">
       <h1 className="text-center text-[20px] font-bold mb-5">Admin - Books</h1>
       <form
         onSubmit={(e) => {
@@ -54,6 +54,11 @@ export default function AdminBookPage() {
           <BookCard key={book.bookid} book={book} />
         ))}
       </div>
+      <Link href="/admin/books/new">
+        <button className="text-[40px] fixed right-0 bottom-0 m-10 text-blue-500 hover:text-blue-600">
+          <BsFillPlusCircleFill />
+        </button>
+      </Link>
     </main>
   );
 }
