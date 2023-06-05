@@ -11,7 +11,7 @@ export default function Navbar() {
       </Link>
       <div className="flex gap-5">
         <Link href="/">Book</Link>
-        <Link href="/">Authors</Link>
+        <Link href="/author">Authors</Link>
         <Link href="/">Publishers</Link>
       </div>
     </nav>
