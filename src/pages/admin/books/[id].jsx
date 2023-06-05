@@ -5,19 +5,29 @@ import { useEffect, useState } from "react";
 export default function BookDetailsAdminPage() {
   const router = useRouter();
   const { id } = router.query;
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState({
+    bookname: "",
+    authorname: "",
+    publishername: "",
+    publicationyear: "",
+    genres: [],
+    pages: "",
+    price: "",
+  });
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/books/${id}`)
-      .then((res) => {
-        setBook(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        // alert("Error. Make sure the API is running.");
-      });
+    if (id) {
+      axios
+        .get(`${apiUrl}/books/${id}`)
+        .then((res) => {
+          setBook(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          // alert("Error. Make sure the API is running.");
+        });
+    }
   }, [id]);
 
   return (
