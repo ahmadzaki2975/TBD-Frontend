@@ -13,6 +13,7 @@ export default function Navbar() {
         <Link href="/">Book</Link>
         <Link href="/author">Authors</Link>
         <Link href="/publisher">Publishers</Link>
+        <Link href="/admin">Admin</Link>
       </div>
     </nav>
   );
