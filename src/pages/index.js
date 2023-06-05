@@ -18,7 +18,7 @@ export default function Home() {
       });
   }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center p-24">
       <h1 className="text-center text-[20px] font-bold mb-10">Books</h1>
       <div className="grid grid-cols-4 gap-5">
         {books.map((book) => {
