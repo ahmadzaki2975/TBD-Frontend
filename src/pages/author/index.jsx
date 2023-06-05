@@ -15,7 +15,7 @@ export default function AuthorPage({ author }) {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <main className="min-h-screen py-24 flex flex-col items-center">
+    <main className="min-h-screen py-20 flex flex-col items-center">
       <h1 className="text-center text-[20px] font-bold mb-10">Authors</h1>
       <div className="mx-auto gap-5 w-fit grid grid-cols-4">
         {authors.map((author) => (
