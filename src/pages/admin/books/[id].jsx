@@ -102,6 +102,12 @@ export default function BookDetailsAdminPage() {
         >
           Delete
         </button>
+        <button
+          className="w-full bg-blue-400 py-2 mt-5 cursor-pointer hover:bg-blue-500 rounded-md"
+          onClick={() => router.push("/admin/books")}
+        >
+          &larr; Back
+        </button>
       </div>
     </main>
   );
