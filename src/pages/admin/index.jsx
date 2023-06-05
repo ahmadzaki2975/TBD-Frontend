@@ -37,8 +37,8 @@ export default function Admin() {
           }
         }} className="max-w-[500px] mx-auto">
           <div className="">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Password
+            <label className="block text-gray-700 text-sm font-bold mb-2 text-center">
+              Passwordnya apa tuh kira-kira?
             </label>
             <input
               type="password"
