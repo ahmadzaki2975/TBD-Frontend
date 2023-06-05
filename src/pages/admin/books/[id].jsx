@@ -42,10 +42,10 @@ export default function BookDetailsAdminPage() {
             </label>
             <input
               type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 opacity-80 cursor-not-allowed"
               placeholder="Author Name"
               value={book.authorname}
-              onChange={(e) => setBook({ ...book, authorname: e.target.value })}
+              disabled
             />
           </div>
           <div className="mt-4">
