@@ -51,7 +51,7 @@ export default function AdminBookPage() {
       </form>
       <div className="grid grid-cols-4 gap-5 mx-[20%]">
         {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+          <BookCard key={book.bookid} book={book} />
         ))}
       </div>
     </main>
