@@ -21,12 +21,12 @@ export default function BookPage() {
   }, [router.query.id]);
   return (
     <main className="flex flex-col items-center min-h-screen py-10">
-      <div
+      {/* <div
         onClick={() => router.replace("/")}
-        className="cursor-pointer hover:underline absolute top-0 left-0 m-2"
+        className="cursor-pointer hover:underline absolute top-[20px] left-0 m-2"
       >
         &larr; Back
-      </div>
+      </div> */}
       <div className="w-[150px] aspect-[3/4] bg-gradient-to-br from-violet-500 to-blue-500 text-white grid place-items-center">Ini gambar</div>
       <div className="w-1/4">
         <h1 className="font-bold text-center text-[20px] mb-3">
