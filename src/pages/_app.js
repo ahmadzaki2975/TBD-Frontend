@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ToastContainer 
-        position="top-center"
+        position="bottom-right"
         theme="dark"
       />
       <Navbar />
