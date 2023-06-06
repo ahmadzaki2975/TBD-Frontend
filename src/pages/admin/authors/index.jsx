@@ -1,29 +1,37 @@
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
 export default function AdminBookPage() {
   const [authors, setAuthors] = useState([]);
   const [searchKey, setSearchKey] = useState("");
-  const [refresh, setRefresh] = useState(false); 
+  const [refresh, setRefresh] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const router = useRouter();
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/authors`)
-      .then((res) => {
-        setAuthors(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        // alert("Error. Make sure the API is running.");
-      });
+    if (localStorage.getItem("isAuthenticated")) {
+      axios
+        .get(`${apiUrl}/authors`)
+        .then((res) => {
+          setAuthors(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          // alert("Error. Make sure the API is running.");
+        });
+    } else {
+      router.push("/admin");
+    }
   }, [refresh]);
 
   return (
     <main className="min-h-screen py-20">
-      <h1 className="text-center text-[20px] font-bold mb-5">Admin - Authors</h1>
+      <h1 className="text-center text-[20px] font-bold mb-5">
+        Admin - Authors
+      </h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();

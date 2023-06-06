@@ -1,15 +1,19 @@
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsFillPlusCircleFill, BsSearch } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 export default function AdminBookPage() {
   const [books, setBooks] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [refresh, setRefresh] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const router = useRouter();
   useEffect(() => {
-    axios
+    if(localStorage.getItem("isAuthenticated")){
+      axios
       .get(`${apiUrl}/books`)
       .then((res) => {
         setBooks(res.data);
@@ -18,6 +22,10 @@ export default function AdminBookPage() {
         console.log(err);
         // alert("Error. Make sure the API is running.");
       });
+    } else {
+      router.push("/admin");
+      toast.error("Admin resources, access denied.");
+    }
   }, [refresh]);
 
   return (

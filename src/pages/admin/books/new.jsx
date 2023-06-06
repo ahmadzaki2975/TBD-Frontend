@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsCaretDownFill, BsX } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 export default function BookDetailsAdminPage() {
   const router = useRouter();
@@ -22,37 +23,44 @@ export default function BookDetailsAdminPage() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/authors`)
-      .then((res) => {
-        setAuthors([{ authorname: "Select", authorid: "" }, ...res.data]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem("isAuthenticated")) {
+      {
+        axios
+          .get(`${apiUrl}/authors`)
+          .then((res) => {
+            setAuthors([{ authorname: "Select", authorid: "" }, ...res.data]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
-    axios
-      .get(`${apiUrl}/publishers`)
-      .then((res) => {
-        setPublishers([
-          {
-            publishername: "Select",
-          },
-          ...res.data,
-        ]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        axios
+          .get(`${apiUrl}/publishers`)
+          .then((res) => {
+            setPublishers([
+              {
+                publishername: "Select",
+              },
+              ...res.data,
+            ]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
-    axios
-      .get(`${apiUrl}/genres`)
-      .then((res) => {
-        setGenres(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        axios
+          .get(`${apiUrl}/genres`)
+          .then((res) => {
+            setGenres(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    } else {
+      router.push("/admin");
+      toast.error("Admin resources, access denied.");
+    }
   }, []);
 
   return (

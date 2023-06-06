@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function BookDetailsAdminPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function BookDetailsAdminPage() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    if (id) {
+    if (id && localStorage.getItem("isAuthenticated")) {
       axios
         .get(`${apiUrl}/books/${id}`)
         .then((res) => {
@@ -25,8 +26,10 @@ export default function BookDetailsAdminPage() {
         })
         .catch((err) => {
           console.log(err);
-          // alert("Error. Make sure the API is running.");
         });
+      } else {
+      toast.error("Admin resources, access denied.");
+      router.push("/admin");
     }
   }, [id]);
 

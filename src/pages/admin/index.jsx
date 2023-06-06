@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Admin() {
   const password = "apcb1234";
@@ -33,7 +34,7 @@ export default function Admin() {
             setIsAuthenticated(true);
             localStorage.setItem("isAuthenticated", true);
           } else {
-            alert("Salah password ngab");
+            toast.error("Password salah!");
           }
         }} className="max-w-[500px] mx-auto">
           <div className="">
