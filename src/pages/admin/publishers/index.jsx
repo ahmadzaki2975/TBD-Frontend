@@ -34,7 +34,7 @@ export default function AdminBookPage() {
 
   return (
     <main className="min-h-screen py-20 relative">
-      <h1 className="text-center text-[20px] font-bold mb-5">Admin - Books</h1>
+      <h1 className="text-center text-[20px] font-bold mb-5">Admin - Publishers</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
