@@ -31,7 +31,7 @@ export default function AuthorDetailPage() {
     }
   }, []);
   return (
-    <main className="flex flex-col items-center min-h-screen py-10">
+    <main className="flex flex-col items-center min-h-screen justify-center">
       <div className="w-[150px] aspect-[3/4] bg-gradient-to-br from-violet-500 to-blue-500 text-white grid place-items-center">
         Ini gambar
       </div>
@@ -54,13 +54,6 @@ export default function AuthorDetailPage() {
         <h2 className="text-center text-[16px]">{bookwritten.map(book => {
           return book.bookname
         })}</h2>
-
-        <button
-          className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md"
-          onClick={() => alert("dari mana duitnya")}
-        >
-          Buy for {author.price}$ each
-        </button>
       </div>
     </main>
   );
