@@ -32,24 +32,9 @@ export default function BookDetailsAdminPage() {
   }, [id]);
 
   return (
-    <main className="flex flex-col items-center min-h-screen py-10">
+    <main className="flex flex-col items-center justify-center min-h-screen py-10">
       <div className="w-1/4">
         <form>
-          <div className="">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Author ID
-            </label>
-            <input
-              type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
-              placeholder="Book Name"
-              value={author.authorid}
-              disabled
-              // onChange={(e) =>
-              //   setAuthor({ ...author, bookname: e.target.value })
-              // }
-            />
-          </div>
           <div className="">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Author Name
@@ -59,6 +44,21 @@ export default function BookDetailsAdminPage() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
               placeholder="Book Name"
               value={author.authorname}
+              disabled
+              // onChange={(e) =>
+              //   setAuthor({ ...author, bookname: e.target.value })
+              // }
+            />
+          </div>
+          <div className="mt-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Author ID
+            </label>
+            <input
+              type="text"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
+              placeholder="Book Name"
+              value={author.authorid}
               disabled
               // onChange={(e) =>
               //   setAuthor({ ...author, bookname: e.target.value })
