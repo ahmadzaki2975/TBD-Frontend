@@ -1,7 +1,8 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { toast } from "react-toastify";
 
@@ -11,17 +12,20 @@ export default function AdminBookPage() {
   const [refresh, setRefresh] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
+  const {loading, setLoading} = useContext(LoadingContext);
   useEffect(() => {
+    setLoading(true);
     if (localStorage.getItem("isAuthenticated")) {
       axios
         .get(`${apiUrl}/authors`)
         .then((res) => {
           setAuthors(res.data);
-          console.log(res.data);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
-          // alert("Error. Make sure the API is running.");
+          toast.error("An error occured. Please try again.");
+          setLoading(false);
         });
     } else {
       router.push("/admin");
