@@ -1,17 +1,21 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function BookPage() {
   const router = useRouter();
   const [book, setBook] = useState({});
+  const {loading, setLoading} = useContext(LoadingContext);
   useEffect(() => {
+    setLoading(true);
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (router.query.id) {
       axios
         .get(`${apiUrl}/books/${router.query.id}`)
         .then((response) => {
+          setLoading(false);
           console.log(response.data);
           setBook(response.data);
         })

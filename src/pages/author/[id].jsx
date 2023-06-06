@@ -1,14 +1,17 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function AuthorDetailPage() {
   const [author, setAuthor] = useState({});
   const [bookwritten, setBookWritten] = useState([]);
   const router = useRouter();
   const { id } = router.query;
+  const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
+    setLoading(true);
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (id) {
       axios
@@ -24,6 +27,7 @@ export default function AuthorDetailPage() {
         .get(`${apiUrl}/authors/books/${id}`)
         .then((response) => {
           setBookWritten(response.data);
+          setLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -52,7 +56,7 @@ export default function AuthorDetailPage() {
         <hr className="my-1" />
         <h2 className="text-center text-[16px] font-semibold">Books Written ({bookwritten.length})</h2>
         <h2 className="text-center text-[16px]">{bookwritten.map(book => {
-          return book.bookname
+          return `${book.bookname}, `
         })}</h2>
       </div>
     </main>
