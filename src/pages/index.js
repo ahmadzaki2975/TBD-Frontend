@@ -1,20 +1,26 @@
 import Image from "next/image";
 import BookCard from "@/components/BookCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { LoadingContext } from "@/contexts/LoadingContext";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [books, setBooks] = useState([]);
+  const { loading, setLoading } = useContext(LoadingContext);
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${apiUrl}/books`)
       .then((res) => {
         setBooks(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        // alert("Error. Make sure the API is running.");
+        toast.error("An error occured, please try again.");
+        setLoading(false);
       });
   }, []);
   return (
