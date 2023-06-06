@@ -3,7 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { BsSearch } from "react-icons/bs";
+import { BsFillPlusCircleFill, BsSearch } from "react-icons/bs";
 import { toast } from "react-toastify";
 
 export default function AdminBookPage() {
@@ -12,7 +12,7 @@ export default function AdminBookPage() {
   const [refresh, setRefresh] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
-  const {loading, setLoading} = useContext(LoadingContext);
+  const { loading, setLoading } = useContext(LoadingContext);
   useEffect(() => {
     setLoading(true);
     if (localStorage.getItem("isAuthenticated")) {
@@ -64,11 +64,17 @@ export default function AdminBookPage() {
           <BsSearch />
         </button>
       </form>
+
       <div className="grid grid-cols-4 gap-5 mx-[20%]">
         {authors.map((author) => (
           <AuthorCard key={author.authorid} author={author} />
         ))}
       </div>
+      <Link href="/admin/authors/new">
+      <button className="text-[40px] drop-shadow-[0_0_5px_#FFFFFF] fixed right-0 bottom-0 m-10 text-blue-500 hover:text-blue-600">
+        <BsFillPlusCircleFill />
+      </button>
+      </Link>
     </main>
   );
 }
