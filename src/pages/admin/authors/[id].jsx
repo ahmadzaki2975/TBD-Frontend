@@ -95,7 +95,7 @@ export default function BookDetailsAdminPage() {
               type="number"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
               placeholder="Year Died"
-              value={author.yeardied == null? "" : author.yeardied}
+              value={author.yeardied == null ? "" : author.yeardied}
               disabled
               // onChange={(e) =>
               //   setAuthor({ ...author, yeardied: e.target.value })
@@ -122,7 +122,18 @@ export default function BookDetailsAdminPage() {
         </button> */}
         <button
           className="w-full bg-red-400 py-2 mt-5 cursor-pointer hover:bg-red-500 rounded-md"
-          onClick={() => alert("dari mana duitnya")}
+          onClick={() => {
+            axios
+              .delete(`${apiUrl}/authors/delete/${id}`)
+              .then((res) => {
+                toast.success("Author deleted successfully");
+                router.push("/admin/authors");
+              })
+              .catch((err) => {
+                console.log(err);
+                toast.error("An error occurred.");
+              });
+          }}
         >
           Delete
         </button>
