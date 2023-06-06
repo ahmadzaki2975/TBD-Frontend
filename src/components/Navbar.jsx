@@ -11,9 +11,9 @@ export default function Navbar() {
   }, [router.pathname]);
 
   return (
-    <nav className="flex justify-between //absolute top-0 w-full bg-blue-500 py-4 px-5 text-white">
+    <nav className="flex justify-between items-center //absolute top-0 w-full bg-blue-500 py-4 px-5 text-white">
       <Link href="/">
-        <div className="font-bold">BookstoreDB</div>
+        <div className="font-bold text-[20px]">Good Reading Bookstore</div>
       </Link>
       <div className="flex gap-5">
         <Link className={pathname == "/" ? "underline underline-offset-4" : ""} href="/">Books</Link>
