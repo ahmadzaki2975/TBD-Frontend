@@ -37,16 +37,32 @@ export default function BookDetailsAdminPage() {
         <form>
           <div className="">
             <label className="block text-gray-700 text-sm font-bold mb-2">
+              Author ID
+            </label>
+            <input
+              type="text"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
+              placeholder="Book Name"
+              value={author.authorid}
+              disabled
+              // onChange={(e) =>
+              //   setAuthor({ ...author, bookname: e.target.value })
+              // }
+            />
+          </div>
+          <div className="">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               Author Name
             </label>
             <input
               type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
               placeholder="Book Name"
               value={author.authorname}
-              onChange={(e) =>
-                setAuthor({ ...author, bookname: e.target.value })
-              }
+              disabled
+              // onChange={(e) =>
+              //   setAuthor({ ...author, bookname: e.target.value })
+              // }
             />
           </div>
           <div className="mt-4">
@@ -55,12 +71,13 @@ export default function BookDetailsAdminPage() {
             </label>
             <input
               type="number"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
               placeholder="Year Born"
               value={author.yearborn}
-              onChange={(e) =>
-                setAuthor({ ...author, yearborn: e.target.value })
-              }
+              disabled
+              // onChange={(e) =>
+              //   setAuthor({ ...author, yearborn: e.target.value })
+              // }
             />
           </div>
           <div className="mt-4">
@@ -69,17 +86,18 @@ export default function BookDetailsAdminPage() {
             </label>
             <input
               type="number"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 cursor-not-allowed"
               placeholder="Year Died"
               value={author.yeardied == null? "" : author.yeardied}
-              onChange={(e) =>
-                setAuthor({ ...author, yeardied: e.target.value })
-              }
+              disabled
+              // onChange={(e) =>
+              //   setAuthor({ ...author, yeardied: e.target.value })
+              // }
             />
           </div>
         </form>
 
-        <button
+        {/* <button
           className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md"
           onClick={() => {
             axios
@@ -94,7 +112,7 @@ export default function BookDetailsAdminPage() {
           }}
         >
           Update
-        </button>
+        </button> */}
         <button
           className="w-full bg-red-400 py-2 mt-5 cursor-pointer hover:bg-red-500 rounded-md"
           onClick={() => alert("dari mana duitnya")}
