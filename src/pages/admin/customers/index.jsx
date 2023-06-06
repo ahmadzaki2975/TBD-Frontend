@@ -65,7 +65,7 @@ export default function AdminBookPage() {
       </form>
       <div className="flex flex-col gap-5 w-1/2 mx-auto">
         {customers.map((customer) => (
-          <BookCard key={customer.id} customer={customer} />
+          <BookCard key={customer.customerid} customer={customer} />
         ))}
       </div>
       <Link href="/admin/books/new">
