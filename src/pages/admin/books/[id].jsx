@@ -1,6 +1,7 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsCaretDownFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 
@@ -20,8 +21,10 @@ export default function BookDetailsAdminPage() {
   const [publishers, setPublishers] = useState([]);
   const [genres, setGenres] = useState([]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const {loading, setLoading} = useContext(LoadingContext);
 
   useEffect(() => {
+    setLoading(true);
     if (localStorage.getItem("isAuthenticated")) {
       if (id) {
         axios
@@ -49,9 +52,12 @@ export default function BookDetailsAdminPage() {
                 (author) => author.authorname !== book.authorname
               ),
             ]);
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
+            toast.error("An error occured. Please try again.");
+            setLoading(false);
           });
 
           axios
