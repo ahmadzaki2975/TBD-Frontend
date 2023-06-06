@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 export default function AdminBookPage() {
   const [authors, setAuthors] = useState([]);
@@ -24,6 +25,7 @@ export default function AdminBookPage() {
         });
     } else {
       router.push("/admin");
+      toast.error("Admin resources, access denied.");
     }
   }, [refresh]);
 
