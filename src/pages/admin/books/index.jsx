@@ -74,7 +74,7 @@ export default function AdminBookPage() {
 function BookCard({ book }) {
   return (
     <Link href={`/admin/books/${book.bookid}`}>
-      <div className="aspect-square grid place-items-center outline outline-black bg-white cursor-pointer rounded-md transition hover:drop-shadow-[0_0_5px_rgba(0,0,0,.9)]">
+      <div className="aspect-square grid p-5 place-items-center outline outline-black bg-white cursor-pointer rounded-md transition hover:drop-shadow-[0_0_5px_rgba(0,0,0,.9)]">
         <h1 className="text-center">{book.bookname}</h1>
       </div>
     </Link>

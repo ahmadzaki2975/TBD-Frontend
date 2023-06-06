@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { BsCaretDownFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 
 export default function BookDetailsAdminPage() {
@@ -15,28 +16,73 @@ export default function BookDetailsAdminPage() {
     pages: "",
     price: "",
   });
+  const [authors, setAuthors] = useState([]);
+  const [publishers, setPublishers] = useState([]);
+  const [genres, setGenres] = useState([]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    if (id && localStorage.getItem("isAuthenticated")) {
-      axios
-        .get(`${apiUrl}/books/${id}`)
-        .then((res) => {
-          setBook(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      } else {
+    if (localStorage.getItem("isAuthenticated")) {
+      if (id) {
+        axios
+          .get(`${apiUrl}/books/${id}`)
+          .then((res) => {
+            if(book.bookname == "") {
+              setBook(res.data);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        if(book.bookname != "") {
+          axios
+          .get(`${apiUrl}/authors`)
+          .then((res) => {
+            const authors = res.data;
+            const currentAuthor = authors.find(
+              (author) => author.authorname == book.authorname
+            );
+            setAuthors([
+              currentAuthor,
+              ...authors.filter(
+                (author) => author.authorname !== book.authorname
+              ),
+            ]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+          axios
+          .get(`${apiUrl}/publishers`)
+          .then((res) => {
+            const publishers = res.data;
+            const currentPublisher = publishers.find(
+              (publisher) => publisher.publishername == book.publishername
+            );
+            setPublishers([
+              currentPublisher,
+              ...publishers.filter(
+                (publisher) => publisher.publishername !== book.publishername
+              ),
+            ]);
+          })
+        }
+      }
+    } else {
       toast.error("Admin resources, access denied.");
       router.push("/admin");
     }
-  }, [id]);
+  }, [id, book]);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-10">
       <div className="w-1/4">
         <form>
+          <div>
+            <h1>Book ID : {book.bookid}</h1>
+          </div>
           <div className="">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Book Name
@@ -51,29 +97,46 @@ export default function BookDetailsAdminPage() {
           </div>
           <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Author Name
+              Author
             </label>
-            <input
-              type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 opacity-80 cursor-not-allowed"
-              placeholder="Author Name"
-              value={book.authorname}
-              disabled
-            />
+            <div className="relative flex justify-center items-center">
+              <select
+                className="shadow appearance-none border rounded cursor-pointer w-full py-2 px-3 text-gray-700 bg-transparent relative z-[2]"
+                onChange={(e) => {
+                  setBook({ ...book, authorid: e.target.value });
+                }}
+              >
+                {authors.map((author) => (
+                  <option key={author?.authorid} value={author?.authorid}>
+                    {author?.authorname}
+                  </option>
+                ))}
+              </select>
+              <BsCaretDownFill className="absolute right-[10px] opacity-75" />
+            </div>
           </div>
           <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Publisher Name
+              Publisher
             </label>
-            <input
-              type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-              placeholder="Publisher Name"
-              value={book.publishername}
-              onChange={(e) =>
-                setBook({ ...book, publishername: e.target.value })
-              }
-            />
+            <div className="relative flex justify-center items-center">
+              <select
+                className="shadow appearance-none border rounded cursor-pointer w-full py-2 px-3 text-gray-700 bg-transparent relative z-[2]"
+                onChange={(e) => {
+                  setBook({ ...book, publishername: e.target.value });
+                }}
+              >
+                {publishers.map((publisher) => (
+                  <option
+                    key={publisher.publishername}
+                    value={publisher.publishername}
+                  >
+                    {publisher.publishername}
+                  </option>
+                ))}
+              </select>
+              <BsCaretDownFill className="absolute right-[10px] opacity-75" />
+            </div>
           </div>
           <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
