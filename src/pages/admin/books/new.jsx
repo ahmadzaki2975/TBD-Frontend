@@ -1,6 +1,7 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsCaretDownFill, BsX } from "react-icons/bs";
 import { toast } from "react-toastify";
 
@@ -21,17 +22,22 @@ export default function BookDetailsAdminPage() {
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const {loading, setLoading} = useContext(LoadingContext);
 
   useEffect(() => {
+    setLoading(true);
     if (localStorage.getItem("isAuthenticated")) {
       {
         axios
           .get(`${apiUrl}/authors`)
           .then((res) => {
             setAuthors([{ authorname: "Select", authorid: "" }, ...res.data]);
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
+            toast.error("An error occured. Please try again.");
+            setLoading(false);
           });
 
         axios
@@ -43,18 +49,24 @@ export default function BookDetailsAdminPage() {
               },
               ...res.data,
             ]);
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
+            toast.error("An error occured. Please try again.");
+            setLoading(false);
           });
 
         axios
           .get(`${apiUrl}/genres`)
           .then((res) => {
             setGenres(res.data);
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
+            setLoading(false);
+            toast.error("An error occured. Please try again.");
           });
       }
     } else {
