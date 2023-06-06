@@ -263,10 +263,11 @@ export default function BookDetailsAdminPage() {
                 genres: selectedGenres.map((genre) => genre.genreid),
               })
               .then((res) => {
-                alert("Book added successfully");
+                toast.success("Book added successfully");
                 router.push("/admin/books");
               })
               .catch((err) => {
+                toast.error("An error occured.");
                 console.log(err);
               });
           }}
