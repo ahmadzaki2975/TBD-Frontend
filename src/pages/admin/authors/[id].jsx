@@ -1,6 +1,7 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function BookDetailsAdminPage() {
@@ -12,22 +13,28 @@ export default function BookDetailsAdminPage() {
     yearborn: "",
     yeardied: "",
   });
+  const { loading, setLoading } = useContext(LoadingContext);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
+    setLoading(true);
     if (id && localStorage.getItem("isAuthenticated")) {
       axios
         .get(`${apiUrl}/authors/${id}`)
         .then((res) => {
           setAuthor(res.data[0]);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
           // alert("Error. Make sure the API is running.");
+          toast.error("An error occurred.");
+          setLoading(false);
         });
     } else {
       router.push("/admin");
       toast.error("Admin resources, access denied.");
+      setLoading(false);
     }
   }, [id]);
 
