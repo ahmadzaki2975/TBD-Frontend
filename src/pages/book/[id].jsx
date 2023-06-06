@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function BookPage() {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function BookPage() {
 
         <button
           className="w-full bg-green-400 py-2 mt-10 cursor-pointer hover:bg-green-500 rounded-md"
-          onClick={() => alert("dari mana duitnya")}
+          onClick={() => toast.warn("Dari mana duitnya")}
         >
           Buy for {book.price}$ each
         </button>
