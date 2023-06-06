@@ -178,11 +178,12 @@ export default function BookDetailsAdminPage() {
             axios
               .post(`${apiUrl}/books/update/${id}`, book)
               .then((res) => {
-                alert("Book updated successfully");
+                toast.success("Book updated successfully");
                 router.push("/admin/books");
               })
               .catch((err) => {
                 console.log(err);
+                toast.error("An error occured. Please try again.");
               });
           }}
         >
@@ -194,10 +195,11 @@ export default function BookDetailsAdminPage() {
             axios
               .delete(`${apiUrl}/books/delete/${id}`)
               .then((res) => {
-                alert("Book deleted successfully");
+                toast.success("Book deleted successfully");
                 router.push("/admin/books");
               })
               .catch((err) => {
+                toast.error("An error occured. Please try again.");
                 console.log(err);
               });
           }}
