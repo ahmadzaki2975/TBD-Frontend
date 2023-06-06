@@ -25,7 +25,7 @@ export default function Admin() {
           <MenuItem text="Customers" />
           <MenuItem text="Orders" />
           <MenuItem text="Stores" />
-          <MenuItem text="Genres" />
+          <MenuItem text="SQL" />
         </div>
       ) : (
         <form onSubmit={(e) => {
