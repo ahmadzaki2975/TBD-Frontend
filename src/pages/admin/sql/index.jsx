@@ -5,14 +5,14 @@ import { toast } from "react-toastify";
 
 export default function FreeSQL() {
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState(["Jangan Drop DB bang ntar gwe nangis"]);
+  const [result, setResult] = useState(["Jangan Drop DB bang ntar sy nangis"]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
   function handleSubmit(e) {
     e.preventDefault();
     if(query.toLowerCase().includes("drop")) {
-      toast.info("Jangan Drop DB bang ntar gwe nangis");
+      toast.info("Jangan Drop DB bang ntar sy nangis");
     } else {
       axios
       .post(`${apiUrl}/sql`, { query })
