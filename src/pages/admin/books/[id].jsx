@@ -21,66 +21,82 @@ export default function BookDetailsAdminPage() {
   const [publishers, setPublishers] = useState([]);
   const [genres, setGenres] = useState([]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const {loading, setLoading} = useContext(LoadingContext);
+  const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     if (localStorage.getItem("isAuthenticated")) {
       if (id) {
         axios
           .get(`${apiUrl}/books/${id}`)
           .then((res) => {
-            if(book.bookname == "") {
+            if (book.publishername == "") {
               setBook(res.data);
+              console.log(res.data);
             }
           })
           .catch((err) => {
             console.log(err);
           });
-
-        if(book.bookname != "") {
-          axios
-          .get(`${apiUrl}/authors`)
-          .then((res) => {
-            const authors = res.data;
-            const currentAuthor = authors.find(
-              (author) => author.authorname == book.authorname
-            );
-            setAuthors([
-              currentAuthor,
-              ...authors.filter(
-                (author) => author.authorname !== book.authorname
-              ),
-            ]);
-            setLoading(false);
-          })
-          .catch((err) => {
-            console.log(err);
-            toast.error("An error occured. Please try again.");
-            setLoading(false);
-          });
-
-          axios
-          .get(`${apiUrl}/publishers`)
-          .then((res) => {
-            const publishers = res.data;
-            const currentPublisher = publishers.find(
-              (publisher) => publisher.publishername == book.publishername
-            );
-            setPublishers([
-              currentPublisher,
-              ...publishers.filter(
-                (publisher) => publisher.publishername !== book.publishername
-              ),
-            ]);
-          })
-        }
       }
     } else {
       toast.error("Admin resources, access denied.");
       router.push("/admin");
     }
   }, [id]);
+
+  useEffect(() => {
+    if (book.publishername != "") {
+      axios
+        .get(`${apiUrl}/authors`)
+        .then((res) => {
+          const authors = res.data;
+          const currentAuthor = authors.find(
+            (author) => author.authorname == book.authorname
+          );
+          setAuthors([
+            currentAuthor,
+            ...authors.filter(
+              (author) => author.authorname !== book.authorname
+            ),
+          ]);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("An error occured. Please try again.");
+          setLoading(false);
+        });
+
+      axios
+        .get(`${apiUrl}/publishers`)
+        .then((res) => {
+          console.log(res.data);
+          const publishers = res.data;
+          const currentPublisher = publishers.find(
+            (publisher) => publisher.publishername == book.publishername
+          );
+          setPublishers([
+            currentPublisher,
+            ...publishers.filter(
+              (publisher) => publisher.publishername !== book.publishername
+            ),
+          ]);
+          console.log([
+            currentPublisher,
+            ...publishers.filter(
+              (publisher) => publisher.publishername !== book.publishername
+            ),
+          ]);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("An error occured. Please try again.");
+          setLoading(false);
+        });
+    }
+  }, [book]);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-10">
@@ -134,10 +150,10 @@ export default function BookDetailsAdminPage() {
               >
                 {publishers.map((publisher) => (
                   <option
-                    key={publisher.publishername}
-                    value={publisher.publishername}
+                    key={publisher?.publishername}
+                    value={publisher?.publishername}
                   >
-                    {publisher.publishername}
+                    {publisher?.publishername}
                   </option>
                 ))}
               </select>
