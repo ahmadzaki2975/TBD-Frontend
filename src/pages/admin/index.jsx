@@ -29,7 +29,7 @@ export default function Admin() {
           <MenuItem text="Customers" link="customers" />
           <MenuItem text="Purchases" link="purchases" />
           <MenuItem text="Stores" link="stores" />
-          <MenuItem text="SQL Injection Simulator" link="sql"/>
+          <MenuItem text="Free SQL" link="sql"/>
         </div>
       ) : (
         <form onSubmit={(e) => {
