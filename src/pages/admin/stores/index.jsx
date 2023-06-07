@@ -65,7 +65,7 @@ export default function AdminBookPage() {
       </form>
       <div className="flex flex-col gap-5 w-1/2 mx-auto">
         {stores.map((store) => (
-          <BookCard key={store.id} customer={store} />
+          <BookCard key={store.retailstoreid} customer={store} />
         ))}
       </div>
       <Link href="/admin/books/new">
@@ -80,7 +80,7 @@ export default function AdminBookPage() {
 function BookCard({ customer: store }) {
   return (
     <div className="p-2 outline outline-black bg-white cursor-pointer rounded-md transition hover:drop-shadow-[0_0_5px_rgba(0,0,0,.9)]">
-      <h1 className="font-bold">ID :{store.retailstoreid}</h1>
+      <h1 className="font-bold">Store {store.retailstoreid}</h1>
       <h2 className="font-semibold">Address</h2>
       <p>{store.address}</p>
     </div>
