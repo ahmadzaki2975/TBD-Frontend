@@ -41,16 +41,16 @@ export default function PublisherDetailPage() {
       <div className="w-1/4">
         <h1 className="font-bold text-center text-[20px] mb-3">{id}</h1>
         <h2 className="text-center text-[16px] font-semibold">City</h2>
-        <h2 className="text-center text-[16px]">{publisher.city}</h2>
+        <h2 className="text-center text-[16px]">{publisher?.city}</h2>
         <hr className="my-1" />
         <h2 className="text-center text-[16px] font-semibold">Country</h2>
-        <h2 className="text-center text-[16px]">{publisher.country}</h2>
+        <h2 className="text-center text-[16px]">{publisher?.country}</h2>
         <hr className="my-1" />
         <h2 className="text-center text-[16px] font-semibold">Founded</h2>
-        <h2 className="text-center text-[16px]">{publisher.yearfounded}</h2>
+        <h2 className="text-center text-[16px]">{publisher?.yearfounded}</h2>
         <hr className="my-1" />
         <h2 className="text-center text-[16px] font-semibold">Phone</h2>
-        <h2 className="text-center text-[16px]">{publisher.pages}</h2>
+        <h2 className="text-center text-[16px]">{publisher?.pages}</h2>
         <hr className="my-1" />
         <h2 className="text-center text-[16px] font-semibold">
           Books Published
