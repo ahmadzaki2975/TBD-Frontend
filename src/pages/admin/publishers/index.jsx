@@ -66,11 +66,6 @@ export default function AdminBookPage() {
           <BookCard key={publisher.publishername} book={publisher} />
         ))}
       </div>
-      <Link href="/admin/books/new">
-        <button className="text-[40px] drop-shadow-[0_0_5px_#FFFFFF] fixed right-0 bottom-0 m-10 text-blue-500 hover:text-blue-600">
-          <BsFillPlusCircleFill />
-        </button>
-      </Link>
     </main>
   );
 }

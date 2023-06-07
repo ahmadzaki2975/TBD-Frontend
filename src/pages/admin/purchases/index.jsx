@@ -69,11 +69,6 @@ export default function AdminBookPage() {
           <BookCard key={purchase.orderid} customer={purchase} />
         ))}
       </div>
-      <Link href="/admin/books/new">
-        <button className="text-[40px] drop-shadow-[0_0_5px_#FFFFFF] fixed right-0 bottom-0 m-10 text-blue-500 hover:text-blue-600">
-          <BsFillPlusCircleFill />
-        </button>
-      </Link>
     </main>
   );
 }
@@ -93,9 +88,9 @@ function BookCard({ customer: purchase }) {
       <hr className="my-1" />
       <h2 className="font-semibold">Total Price</h2>
       <p>{purchase.totalprice}</p>
-      <hr className="my-1" />
+      {/* <hr className="my-1" />
       <h2 className="font-semibold">Order Date</h2>
-      <p>{purchase.orderdate}</p>
+      <p>{purchase.boughtat}</p> */}
     </div>
   );
 }

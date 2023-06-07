@@ -22,7 +22,7 @@ export default function FreeSQL() {
   return (
     <main className="min-h-screen py-20 relative">
       <h1 className="text-center text-[20px] font-bold mb-5">
-        Admin - Free SQL
+        Admin - SQL Injection
       </h1>
       <form
         onSubmit={(e) => {
@@ -36,7 +36,7 @@ export default function FreeSQL() {
           </label>
           <textarea
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-            placeholder="SQL Query"
+            placeholder="DROP DATABASE;"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
