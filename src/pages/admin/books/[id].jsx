@@ -24,7 +24,7 @@ export default function BookDetailsAdminPage() {
   const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
-    // setLoading(true);
+    setLoading(true);
     if (localStorage.getItem("isAuthenticated")) {
       if (id) {
         axios
