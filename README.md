@@ -8,4 +8,4 @@ Ahmad Zaki Akmal - 21/480179/TK/52981
 
 ## Related Repositories
 
-[The backend](https://github.com/TBD-Backend)
+[The backend](https://github.com/ahmadzaki2975/TBD-Backend)
