@@ -23,7 +23,7 @@ export default function Admin() {
           <MenuItem text="Publishers" link="publishers" />
           <MenuItem text="Staffs" link="staffs" />
           <MenuItem text="Customers" link="customers" />
-          <MenuItem text="Orders" link="orders" />
+          <MenuItem text="Purchases" link="purchases" />
           <MenuItem text="Stores" link="stores" />
           <MenuItem text="SQL Injection Simulator" link="sql"/>
         </div>
