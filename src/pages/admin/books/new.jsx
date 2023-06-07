@@ -163,7 +163,7 @@ export default function BookDetailsAdminPage() {
             <input
               type="number"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-              placeholder="Price"
+              placeholder="Pages"
               value={book.pages}
               onChange={(e) => setBook({ ...book, pages: e.target.value })}
             />

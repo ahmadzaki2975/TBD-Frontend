@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function FreeSQL() {
   const [query, setQuery] = useState("");
@@ -10,7 +11,10 @@ export default function FreeSQL() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios
+    if(query.toLowerCase().includes("drop")) {
+      toast.info("Jangan Drop DB bang ntar gwe nangis");
+    } else {
+      axios
       .post(`${apiUrl}/sql`, { query })
       .then((res) => {
         setResult(JSON.stringify(res.data));
@@ -18,6 +22,7 @@ export default function FreeSQL() {
       .catch((err) => {
         setResult(JSON.stringify(err));
       });
+    }
   }
 
   useEffect(() => {
@@ -29,7 +34,7 @@ export default function FreeSQL() {
   return (
     <main className="min-h-screen py-20 relative">
       <h1 className="text-center text-[20px] font-bold mb-5">
-        Admin - SQL Injection
+        Admin - Free SQL
       </h1>
       <form
         onSubmit={(e) => {
