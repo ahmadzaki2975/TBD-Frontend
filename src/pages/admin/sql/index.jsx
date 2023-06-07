@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function FreeSQL() {
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(["Jangan Drop DB bang ntar gwe nangis"]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
@@ -29,7 +29,7 @@ export default function FreeSQL() {
   return (
     <main className="min-h-screen py-20 relative">
       <h1 className="text-center text-[20px] font-bold mb-5">
-        Admin - SQL Injection
+        Admin - Free SQL
       </h1>
       <form
         onSubmit={(e) => {
