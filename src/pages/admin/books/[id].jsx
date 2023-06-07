@@ -80,7 +80,7 @@ export default function BookDetailsAdminPage() {
       toast.error("Admin resources, access denied.");
       router.push("/admin");
     }
-  }, [id, book]);
+  }, [id]);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-10">
