@@ -1,14 +1,15 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function FreeSQL() {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState([]);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const router = useRouter();
 
   function handleSubmit(e) {
     e.preventDefault();
-
     axios
       .post(`${apiUrl}/sql`, { query })
       .then((res) => {
@@ -18,6 +19,12 @@ export default function FreeSQL() {
         setResult(JSON.stringify(err));
       });
   }
+
+  useEffect(() => {
+    if(!localStorage.getItem("isAuthenticated")) {
+      router.push("/admin");
+    }
+  })
 
   return (
     <main className="min-h-screen py-20 relative">

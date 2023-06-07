@@ -1,15 +1,19 @@
+import { LoadingContext } from "@/contexts/LoadingContext";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Admin() {
   const password = "apcb1234";
   const [input, setInput] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { setLoading }  = useContext(LoadingContext);
 
   useEffect(() => { 
     if (localStorage.getItem("isAuthenticated")) {
       setIsAuthenticated(true);
+    } else {
+      setLoading(false);
     }
   }, [])
 
@@ -39,7 +43,7 @@ export default function Admin() {
         }} className="max-w-[500px] mx-auto">
           <div className="">
             <label className="block text-gray-700 text-sm font-bold mb-2 text-center">
-              Passwordnya apa tuh kira-kira?
+              Enter Password
             </label>
             <input
               type="password"
