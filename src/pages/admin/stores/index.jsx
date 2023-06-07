@@ -43,10 +43,11 @@ export default function AdminBookPage() {
           if (searchKey === "") {
             setRefresh(!refresh);
           } else {
-            const result = stores.filter((publisher) =>
-              publisher.publishername
+            const result = stores.filter((store) =>
+              store.address
                 .toLowerCase()
-                .includes(searchKey.trim().toLowerCase())
+                .includes(searchKey.trim().toLowerCase()) || 
+              store.retailstoreid == searchKey.trim().toLowerCase()
             );
             setStores(result);
           }

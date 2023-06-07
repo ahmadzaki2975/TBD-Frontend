@@ -43,8 +43,8 @@ export default function AdminBookPage() {
           if (searchKey === "") {
             setRefresh(!refresh);
           } else {
-            const result = customers.filter((publisher) =>
-              publisher.publishername
+            const result = customers.filter((customer) =>
+              customer.customername
                 .toLowerCase()
                 .includes(searchKey.trim().toLowerCase())
             );

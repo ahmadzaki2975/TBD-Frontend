@@ -41,8 +41,8 @@ export default function AdminBookPage() {
           if (searchKey === "") {
             setRefresh(!refresh);
           } else {
-            const result = staffs.filter((publisher) =>
-              publisher.publishername
+            const result = staffs.filter((staff) =>
+              staff.staffname
                 .toLowerCase()
                 .includes(searchKey.trim().toLowerCase())
             );

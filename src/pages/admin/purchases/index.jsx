@@ -19,7 +19,7 @@ export default function AdminBookPage() {
       axios
         .get(`${apiUrl}/purchases`)
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
           setPurchases(res.data);
           setLoading(false);
         })
@@ -35,19 +35,21 @@ export default function AdminBookPage() {
 
   return (
     <main className="min-h-screen py-20 relative">
-      <h1 className="text-center text-[20px] font-bold mb-5">
-        Admin - Stores
-      </h1>
+      <h1 className="text-center text-[20px] font-bold mb-5">Admin - Stores</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           if (searchKey === "") {
             setRefresh(!refresh);
           } else {
-            const result = purchases.filter((publisher) =>
-              publisher.publishername
-                .toLowerCase()
-                .includes(searchKey.trim().toLowerCase())
+            const result = purchases.filter(
+              (purchase) =>
+                purchase.bookname
+                  .toLowerCase()
+                  .includes(searchKey.trim().toLowerCase()) ||
+                purchase.customername
+                  .toLowerCase()
+                  .includes(searchKey.trim().toLowerCase())
             );
             setPurchases(result);
           }
