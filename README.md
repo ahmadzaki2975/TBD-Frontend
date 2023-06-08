@@ -4,7 +4,7 @@ A repository for Database Technology project, making a web app integrated to the
 
 # Access
 
-Available at [https://zaki-tbd.technocorner.id](https://zaki-tbd.technocorner.id)
+Available at [https://zaki-tbd.technocorner.id](https://zaki-tbd.technocorner.id) or [https://tbd-frontend-tau.vercel.app](https://tbd-frontend-tau.vercel.app)
 
 ## Made By
 
